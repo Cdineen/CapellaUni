@@ -7,7 +7,7 @@ resources:
       type: github
       name: Cdineen/CapellaUni
       ref: refs/heads/main
-
+      endpoint: github.com_Cdineen
 
   pipelines:
     - pipeline: TestFeed
