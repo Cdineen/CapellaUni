@@ -7,15 +7,14 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    targetType: 'filePath' 
-    filePath: 'HellloWorld.ps1' # Path to your PowerShell script in the repo
-    # arguments: # Optional: If your script requires arguments
-    # workingDirectory: # Optional: Working directory (defaults to the root of the repo)
-  displayName: 'Run PowerShell Script'
+    targetType: 'filePath'
+    filePath: 'HelloWorld.ps1' # Path to your existing PowerShell script in the repo
+  displayName: 'Run HelloWorld Script'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    ArtifactName: 'HelloWorldTest' 
-    publishLocation: 'Container' 
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)' # The folder where your artifacts are located
+    ArtifactName: 'drop' # The name of the artifact, as specified
+    publishLocation: 'Container' # Publishing to Azure DevOps (formerly Visual Studio Team Services)
   displayName: 'Publish Artifact: drop'
+
