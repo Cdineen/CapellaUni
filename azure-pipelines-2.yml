@@ -1,0 +1,40 @@
+trigger:
+- main
+
+resources:
+  repositories:
+    - repository: CapellaUni
+      type: github
+      name: Cdineen/CapellaUni
+      ref: refs/heads/main
+
+
+  pipelines:
+    - pipeline: TestFeed
+      source: Cdineen.CapellaUni
+      trigger:
+        branches:
+        - main
+
+stages:
+- stage: QA
+  jobs:
+  - deployment: DeployToQA
+    environment: 'QA'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Deploying to QA environment...
+            displayName: 'Deploy to QA'
+
+- stage: Production
+  jobs:
+  - deployment: DeployToProd
+    environment: 'Production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Deploying to Production environment...
+            displayName: 'Deploy to Production'
