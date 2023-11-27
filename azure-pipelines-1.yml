@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'vs2017-win2016' # This corresponds to Hosted VS2017
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'filePath' 
+    filePath: 'HellloWorld.ps1' # Path to your PowerShell script in the repo
+    # arguments: # Optional: If your script requires arguments
+    # workingDirectory: # Optional: Working directory (defaults to the root of the repo)
+  displayName: 'Run PowerShell Script'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    ArtifactName: 'HelloWorldTest' 
+    publishLocation: 'Container' 
+  displayName: 'Publish Artifact: drop'
